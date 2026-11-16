@@ -1,1 +1,385 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>District Shahdol | Government of Madhya Pradesh</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f4f6f9;color:#253449;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.top{background:#092d50;color:white;padding:8px 5%;display:flex;justify-content:space-between;flex-wrap:wrap;font-size:13px}
+.header{background:white;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{display:flex;align-items:center;gap:15px}
+.logo img{width:65px;height:65px;object-fit:contain}
+.logo h1{color:#123e68;font-size:25px}
+.logo p{font-size:13px;color:#666}
+.gov{font-weight:bold;color:#123e68;text-align:right}
+nav{background:#123e68;color:white;position:sticky;top:0;z-index:1000}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 5%}
+nav ul{display:flex;list-style:none;flex-wrap:wrap}
+nav li{position:relative}
+nav li>a{display:block;padding:15px 11px;font-size:13px}
+nav li:hover>a{background:#e68a25}
+.dropdown{display:none;position:absolute;background:white;color:#183a59;min-width:210px;box-shadow:0 5px 15px #0002}
+.dropdown a{display:block;padding:10px;border-bottom:1px solid #eee}
+nav li:hover .dropdown{display:block}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+.search{display:flex;gap:5px}
+.search input{width:120px;padding:8px;border:0;border-radius:4px}
+.search button{border:0;background:#ed922e;color:white;padding:8px}
+.hero{height:430px;position:relative;overflow:hidden;background:#123e68}
+.slide{position:absolute;inset:0;opacity:0;transition:1s}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}
+.hero-text{position:absolute;left:9%;top:50%;transform:translateY(-50%);color:white}
+.hero-text h2{font-size:43px}
+.hero-text p{font-size:18px;margin-top:10px}
+.btn{display:inline-block;background:#e98c24;color:white;padding:10px 20px;border-radius:4px;margin-top:15px}
+.arrows{position:absolute;bottom:20px;right:5%;display:flex;gap:8px}
+.arrows button{border:0;padding:10px 15px;cursor:pointer}
+.container{width:90%;max-width:1250px;margin:auto}
+section{padding:40px 0}
+.heading{font-size:27px;color:#123e68;border-left:5px solid #ed922e;padding-left:12px;margin-bottom:23px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.quick a{background:white;padding:22px 10px;text-align:center;border-radius:7px;box-shadow:0 2px 10px #0001}
+.quick a:hover{transform:translateY(-4px);transition:.3s}
+.quick .icon{font-size:32px}
+.quick h3{font-size:16px;color:#123e68}
+.stats{background:#123e68;color:white;padding:35px 5%}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:20px}
+.stats h2{font-size:30px;color:#ffc06a}
+.columns{display:grid;grid-template-columns:1.3fr .7fr;gap:20px}
+.panel{background:white;padding:22px;border-radius:8px;box-shadow:0 2px 10px #0001;margin-bottom:18px}
+.panel h3{color:#123e68;border-bottom:1px solid #ddd;padding-bottom:10px;margin-bottom:12px}
+.news{padding:12px 0;border-bottom:1px solid #eee;display:flex;gap:12px}
+.date{background:#fff0dc;color:#b96b13;padding:8px;text-align:center;min-width:60px;font-size:12px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.about img{width:100%;height:300px;object-fit:cover;border-radius:8px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 10px #0001}
+.card img{width:100%;height:190px;object-fit:cover}
+.card div{padding:16px}
+.card h3{color:#123e68;margin-bottom:8px}
+.directory{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.directory a{padding:17px;background:white;border-left:4px solid #ed922e;border-radius:5px}
+.directory a:hover{background:#fff0dc}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.gallery img{width:100%;height:180px;object-fit:cover;border-radius:7px}
+.utility{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.utility a{background:white;padding:20px;text-align:center;border-radius:6px}
+.helpline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.helpline div{background:white;padding:18px;text-align:center;border-radius:7px}
+.helpline h2{color:#e68a25}
+footer{background:#092d50;color:white;padding:40px 5% 15px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+footer h3{color:#ffc06a;margin-bottom:13px}
+footer a{display:block;color:#ddd;margin:8px 0;font-size:14px}
+.copy{text-align:center;border-top:1px solid #ffffff30;margin-top:25px;padding-top:15px;font-size:13px}
+.topbtn{position:fixed;right:20px;bottom:20px;background:#e98c24;color:white;border:0;border-radius:50%;width:45px;height:45px;font-size:20px;cursor:pointer}
+@media(max-width:850px){
+.menu{display:block}
+.nav{padding:10px 5%}
+nav ul{display:none;width:100%;flex-direction:column}
+nav ul.show{display:flex}
+.dropdown{position:static;display:none}
+nav li:hover .dropdown{display:block}
+.search{display:none}
+.quick{grid-template-columns:repeat(2,1fr)}
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+.columns,.about{grid-template-columns:1fr}
+.cards{grid-template-columns:repeat(2,1fr)}
+.directory{grid-template-columns:repeat(2,1fr)}
+.gallery{grid-template-columns:repeat(2,1fr)}
+.helpline{grid-template-columns:repeat(2,1fr)}
+.foot-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+.header{padding:12px 4%}
+.logo h1{font-size:19px}
+.gov{font-size:11px}
+.hero{height:340px}
+.hero-text h2{font-size:29px}
+.hero-text p{font-size:14px}
+.cards{grid-template-columns:1fr}
+.directory{grid-template-columns:1fr}
+.foot-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+ <span>भारत सरकार | Government of India</span>
+ <span><a href="#main">Skip to Main Content</a> | <a href="#contact">Contact</a> | <a href="#main">Sitemap</a></span>
+</div>
+
+<header class="header">
+ <div class="logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="National Emblem">
+  <div>
+   <h1>जिला शहडोल</h1>
+   <p>मध्य प्रदेश शासन | District Shahdol</p>
+  </div>
+ </div>
+ <div class="gov">
+  GOVERNMENT OF MADHYA PRADESH<br>
+  <small>District Administration Shahdol</small>
+ </div>
+</header>
+
+<nav>
+<div class="nav">
+ <button class="menu" onclick="document.getElementById('links').classList.toggle('show')">☰</button>
+ <ul id="links">
+  <li><a href="#home">Home</a></li>
+  <li><a href="#about">About District ▾</a>
+   <div class="dropdown">
+    <a href="#about">History</a>
+    <a href="#about">Geography</a>
+    <a href="#about">Demography</a>
+    <a href="#about">Map of District</a>
+    <a href="#about">Administrative Setup</a>
+   </div>
+  </li>
+  <li><a href="#directory">Directory ▾</a>
+   <div class="dropdown">
+    <a href="#directory">Who's Who</a>
+    <a href="#directory">Collectorate</a>
+    <a href="#directory">Tehsil</a>
+    <a href="#directory">Police</a>
+    <a href="#directory">Helpline</a>
+   </div>
+  </li>
+  <li><a href="#departments">Departments</a></li>
+  <li><a href="#tourism">Tourism ▾</a>
+   <div class="dropdown">
+    <a href="#tourism">Tourist Places</a>
+    <a href="#tourism">How to Reach</a>
+    <a href="#tourism">Accommodation</a>
+    <a href="#tourism">Festivals</a>
+   </div>
+  </li>
+  <li><a href="#notices">Notices</a></li>
+  <li><a href="#gallery">Gallery</a></li>
+  <li><a href="#contact">Contact</a></li>
+ </ul>
+ <div class="search">
+  <input id="searchInput" placeholder="Search...">
+  <button onclick="searchSite()">Search</button>
+ </div>
+</div>
+</nav>
+
+<main id="main">
+<section class="hero" id="home">
+ <div class="slide active">
+  <img src="https://cdn.s3waas.gov.in/s354229abfcfa5649e7003b83dd4755294/uploads/2026/08/17860935247325.jpeg" alt="Shahdol District">
+  <div class="hero-text">
+   <h2>Welcome to Shahdol</h2>
+   <p>मध्य प्रदेश का सुंदर जिला - संस्कृति, प्रकृति और विकास की पहचान</p>
+   <a href="#about" class="btn">Explore District</a>
+  </div>
+ </div>
+ <div class="slide">
+  <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1400" alt="Nature">
+  <div class="hero-text">
+   <h2>प्राकृतिक सौंदर्य</h2>
+   <p>शहडोल की प्राकृतिक सुंदरता और पर्यटन स्थलों को जानें</p>
+   <a href="#tourism" class="btn">Explore Tourism</a>
+  </div>
+ </div>
+ <div class="slide">
+  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1400" alt="Forest">
+  <div class="hero-text">
+   <h2>संस्कृति और विरासत</h2>
+   <p>शहडोल की परंपरा, संस्कृति और ऐतिहासिक पहचान</p>
+   <a href="#gallery" class="btn">View Gallery</a>
+  </div>
+ </div>
+ <div class="arrows">
+  <button onclick="changeSlide(-1)">❮</button>
+  <button onclick="changeSlide(1)">❯</button>
+ </div>
+</section>
+
+<section class="container">
+ <h2 class="heading">Quick Links | महत्वपूर्ण लिंक</h2>
+ <div class="quick">
+  <a href="#directory"><div class="icon">🏢</div><h3>District Administration</h3><p>जिला प्रशासन</p></a>
+  <a href="#tourism"><div class="icon">🏞️</div><h3>Tourist Places</h3><p>पर्यटन स्थल</p></a>
+  <a href="#departments"><div class="icon">🏛️</div><h3>Departments</h3><p>सरकारी विभाग</p></a>
+  <a href="#notices"><div class="icon">📢</div><h3>Latest Notices</h3><p>नवीनतम सूचनाएं</p></a>
+  <a href="#utility"><div class="icon">🏥</div><h3>Public Utilities</h3><p>सार्वजनिक सुविधाएं</p></a>
+  <a href="#schemes"><div class="icon">📋</div><h3>Government Schemes</h3><p>सरकारी योजनाएं</p></a>
+  <a href="#gallery"><div class="icon">📸</div><h3>Photo Gallery</h3><p>फोटो गैलरी</p></a>
+  <a href="#contact"><div class="icon">☎️</div><h3>Helpline</h3><p>हेल्पलाइन नंबर</p></a>
+ </div>
+</section>
+
+<div class="stats">
+ <div class="stats-grid">
+  <div><h2>5,610</h2><p>क्षेत्रफल (वर्ग किमी)</p></div>
+  <div><h2>10,66,063</h2><p>जनसंख्या (जनगणना 2011)</p></div>
+  <div><h2>886</h2><p>गांव</p></div>
+  <div><h2>3</h2><p>अनुमंडल (प्रशासनिक जानकारी जांचें)</p></div>
+ </div>
+</div>
+
+<section class="container" id="notices">
+ <div class="columns">
+  <div class="panel">
+   <h2 class="heading">Latest News & Notices</h2>
+   <div class="news"><div class="date">NEWS</div><div><b>District Mineral Foundation</b><p>नवीनतम निविदा और प्रशासनिक सूचना के लिए आधिकारिक पोर्टल देखें।</p></div></div>
+   <div class="news"><div class="date">INFO</div><div><b>District Administration Updates</b><p>शहडोल जिले की महत्वपूर्ण घोषणाएं और अपडेट।</p></div></div>
+   <div class="news"><div class="date">INFO</div><div><b>Government Schemes</b><p>सरकारी योजनाओं से जुड़ी जानकारी।</p></div></div>
+   <a class="btn" href="https://shahdol.nic.in/en/notices/">View All Notices</a>
+  </div>
+  <div class="panel">
+   <h3>Important Links</h3>
+   <p>🔹 <a href="https://mpeoffice.gov.in/">E-Office</a></p><br>
+   <p>🔹 <a href="https://shahdol.nic.in/en/whos-who/">Who's Who</a></p><br>
+   <p>🔹 <a href="https://shahdol.nic.in/en/tourist-places/">Tourist Places</a></p><br>
+   <p>🔹 <a href="https://shahdol.nic.in/en/tenders/">Tenders</a></p><br>
+   <p>🔹 <a href="https://shahdol.nic.in/en/recruitment/">Recruitment</a></p>
+  </div>
+ </div>
+</section>
+
+<section class="container" id="about">
+ <h2 class="heading">About District Shahdol</h2>
+ <div class="about">
+  <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=900" alt="Shahdol nature">
+  <div>
+   <h2>शहडोल जिले का परिचय</h2>
+   <p>शहडोल मध्य प्रदेश का एक महत्वपूर्ण जिला है। इसका नाम जिला मुख्यालय शहडोल के नाम पर पड़ा है। यह जिला प्राकृतिक संसाधनों, वन संपदा, आदिवासी संस्कृति और ऐतिहासिक विरासत के लिए जाना जाता है।</p>
+   <p>यहां की स्थानीय संस्कृति, प्राकृतिक सुंदरता और पारंपरिक जीवनशैली इसकी विशेष पहचान हैं।</p>
+   <a class="btn" href="https://shahdol.nic.in/en/about-district/">Read More</a>
+  </div>
+ </div>
+</section>
+
+<section class="container" id="directory">
+ <h2 class="heading">District Directory</h2>
+ <div class="directory">
+  <a href="https://shahdol.nic.in/en/whos-who/">👨‍💼 Who's Who</a>
+  <a href="https://shahdol.nic.in/en/administrative-setup/collectorate/">🏢 Collectorate</a>
+  <a href="https://shahdol.nic.in/en/administrative-setup/tehsil/">🏛️ Tehsil</a>
+  <a href="https://shahdol.nic.in/en/administrative-setup/police/">👮 Police Department</a>
+  <a href="https://shahdol.nic.in/en/helpline/">☎️ Helpline Numbers</a>
+  <a href="https://shahdol.nic.in/en/contact-us/">📞 Contact Us</a>
+  <a href="https://shahdol.nic.in/en/directory/">📒 Telephone Directory</a>
+  <a href="https://shahdol.nic.in/en/administrative-setup/village-panchayats/">🏘️ Village & Panchayats</a>
+  <a href="https://shahdol.nic.in/en/administrative-setup/subdivision-blocks/">📍 Subdivision & Blocks</a>
+ </div>
+</section>
+
+<section class="container" id="tourism">
+ <h2 class="heading">Tourism | पर्यटन स्थल</h2>
+ <div class="cards">
+  <div class="card"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=700" alt="Forest"><div><h3>घाटी डोंगरी</h3><p>शहडोल के प्राकृतिक पर्यटन स्थलों में शामिल।</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=700" alt="Temple"><div><h3>बूढ़ी माता मंदिर</h3><p>स्थानीय आस्था और धार्मिक महत्व का स्थल।</p></div></div>
+  <div class="card"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=700" alt="Nature"><div><h3>सारसी आइलैंड रिजॉर्ट</h3><p>प्राकृतिक वातावरण और पर्यटन का आकर्षण।</p></div></div>
+ </div>
+ <a class="btn" href="https://shahdol.nic.in/en/tourist-places/">Explore All Tourist Places</a>
+</section>
+
+<section class="container" id="departments">
+ <h2 class="heading">Government Departments</h2>
+ <div class="directory">
+  <a href="#departments">🏥 Health Department</a>
+  <a href="#departments">📚 Education Department</a>
+  <a href="#departments">🌾 Agriculture Department</a>
+  <a href="#departments">🐄 Animal Husbandry</a>
+  <a href="#departments">🎨 Handicraft Department</a>
+  <a href="#departments">💼 Employment Department</a>
+  <a href="#departments">🚓 Police Department</a>
+  <a href="#departments">🏛️ Revenue Department</a>
+  <a href="#departments">🏘️ Panchayat Department</a>
+ </div>
+</section>
+
+<section class="container" id="schemes">
+ <h2 class="heading">Government Schemes & Citizen Services</h2>
+ <div class="cards">
+  <div class="card"><div style="padding:22px"><h3>🏠 Residence Certificate</h3><p>मूल निवासी प्रमाण पत्र की जानकारी।</p><a href="https://mpedistrict.gov.in/" class="btn">Apply / Details</a></div></div>
+  <div class="card"><div style="padding:22px"><h3>📜 Caste Certificate</h3><p>जाति प्रमाण पत्र की सेवाएं।</p><a href="https://mpedistrict.gov.in/" class="btn">Apply / Details</a></div></div>
+  <div class="card"><div style="padding:22px"><h3>💡 Electricity Bill</h3><p>बिजली बिल भुगतान सुविधा।</p><a href="https://portal.mpcz.in/" class="btn">Visit Portal</a></div></div>
+ </div>
+</section>
+
+<section class="container" id="utility">
+ <h2 class="heading">Public Utilities</h2>
+ <div class="utility">
+  <a href="#utility">🏦<h3>Banks</h3><p>13 Banks (listed)</p></a>
+  <a href="#utility">🏥<h3>Hospitals</h3><p>Health Facilities</p></a>
+  <a href="#utility">🎓<h3>Colleges</h3><p>Educational Institutions</p></a>
+  <a href="#utility">⚡<h3>Electricity</h3><p>Power Services</p></a>
+ </div>
+</section>
+
+<section class="container" id="gallery">
+ <h2 class="heading">Photo Gallery</h2>
+ <div class="gallery">
+  <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=500" alt="Nature">
+  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500" alt="Forest">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=500" alt="Landscape">
+  <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=500" alt="Temple">
+ </div>
+ <a class="btn" href="https://shahdol.nic.in/en/photo-gallery/">Explore Gallery</a>
+</section>
+
+<section class="container" id="contact">
+ <h2 class="heading">Emergency Helpline Numbers</h2>
+ <div class="helpline">
+  <div><h2>181</h2><p>CM Helpline</p></div>
+  <div><h2>1098</h2><p>Child Helpline</p></div>
+  <div><h2>1091</h2><p>Women Helpline</p></div>
+  <div><h2>100</h2><p>Police (पुराना नंबर)</p></div>
+  <div><h2>108</h2><p>Ambulance</p></div>
+ </div>
+ <p style="margin-top:15px">आपातकालीन पुलिस सहायता के लिए 112 का भी उपयोग करें। नंबरों की वर्तमान स्थिति आधिकारिक स्रोत से जांचें।</p>
+</section>
+</main>
+
+<footer>
+ <div class="foot-grid">
+  <div><h3>District Shahdol</h3><p>मध्य प्रदेश शासन का जिला सूचना पोर्टल।</p></div>
+  <div><h3>Quick Links</h3><a href="#about">About District</a><a href="#tourism">Tourism</a><a href="#gallery">Photo Gallery</a><a href="#directory">Directory</a></div>
+  <div><h3>Citizen Services</h3><a href="#schemes">Government Schemes</a><a href="#notices">Notices</a><a href="#departments">Departments</a><a href="#contact">Helpline</a></div>
+  <div><h3>Useful Websites</h3><a href="https://mp.gov.in/">MP Government</a><a href="https://india.gov.in/">National Portal</a><a href="https://shahdol.nic.in/">Official Shahdol Website</a><a href="https://www.nic.in/">NIC</a></div>
+ </div>
+ <div class="copy">© 2026 District Shahdol | Government of Madhya Pradesh<br>Demo website created using HTML, CSS and JavaScript. Not an official government website.</div>
+</footer>
+
+<button class="topbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+let currentSlide=0;
+const slides=document.querySelectorAll('.slide');
+function changeSlide(n){
+ slides[currentSlide].classList.remove('active');
+ currentSlide=(currentSlide+n+slides.length)%slides.length;
+ slides[currentSlide].classList.add('active');
+}
+setInterval(()=>changeSlide(1),5000);
+
+function searchSite(){
+ const q=document.getElementById('searchInput').value.toLowerCase().trim();
+ if(!q){alert('Please enter a search keyword');return;}
+ const sections=[...document.querySelectorAll('main section, main .stats')];
+ const found=sections.find(s=>s.innerText.toLowerCase().includes(q));
+ if(found){
+  found.scrollIntoView({behavior:'smooth'});
+ }else{
+  alert('इस पेज पर जानकारी नहीं मिली। कृपया दूसरा शब्द खोजें।');
+ }
+}
+document.getElementById('searchInput').addEventListener('keydown',e=>{
+ if(e.key==='Enter')searchSite();
+});
+</script>
+</body>
+</html>
+
